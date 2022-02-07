@@ -1,0 +1,55 @@
+https://github.com/cartesi/rollups-examples/tree/main/echo
+sobre makefile: https://www.embarcados.com.br/introducao-ao-makefile/
+
+substituir as tecnologias utilizadas no arquivo "requirements.txt"
+
+"
+cd echo/rollups-examples/echo/server/
+python3 -m venv .env
+. .env/bin/activate
+pip install -r requirements.txt
+"
+$ django-admin startproject testSQL
+$ cd testSQL
+$ python3 manage.py runserver
+*ctrl + C (para para o servidor. o comando anterior foi para iniciar o servidor e testar a instalação e projeto)
+*para rodar na porta que se espera receber as requisições(http://0.0.0.0:5003), usar o comando $ python3 manage.py runserver 0:5003
+$ python manage.py startapp appSQL
+*na pasta testSQL, altera-se o arquivo "settings" para acrescentar 'appSQL.apps.AppsqlConfig' no INSTALLED_APPS
+*na pasta testSQL, altera-se o arquivo "settings" para acrescentar '0.0.0.0' no ALLOWED_HOSTS
+*na pasta testSQL, altera-se o arquivo "urls" para acrescentar "from django.urls import include" e path('appSQL/', include('appSQL.urls')) na "urlpatterns"
+*na pasta appSQL, altera-se o arquivo "models" para criar o esquema de banco de dados
+*na pasta appSQL, cria-se o arquivo "urls".
+
+$ python3 manage.py makemigrations
+$ python3 manage.py migrate
+$ python3 manage.py createsuperuser
+*sao criados login e senha para acesso inicial ao espaço <dominio>/admin
+
+*a partir deste ponto, o app django esta escutando na mesma porta do que o echo estava. testa-se o comando "docker exec echo_hardhat_1 npx hardhat --network localhost echo:addInput --input "0x636172746573690D0A""
+*a resposta é positiva: "Added input '0x636172746573690D0A' to epoch '1' (timestamp: 1644200276, signer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, tx: 0xb048a1c54a4036cbd86ec5d378b09aa1a114c5c1271233fb9e2a4a04068345b0)"
+*ENTRETANDO, NENHUM INPUT FOI REALIZADO NA APLICAÇÃO. ocorreu o erro:
+"
+Invalid HTTP_HOST header: 'host.docker.internal:5003'. You may need to add 'host.docker.internal' to ALLOWED_HOSTS.
+Bad Request: /advance
+[07/Feb/2022 02:17:57] "POST /advance HTTP/1.1" 400 70385
+"
+* apos a correção do ALLOWED_HOSTS, o servidor parou de responder. suspeita-se que, apos o erro, o conteiner echo_hardhat_1 parou de enviar requisições. assim, procedeu-se com o reinicio dos conteiners($ docker-compose -f docker-compose-host.yml down -v) na pasta echo
+* a suspeita se confirmou. apos o erro, o echo_hardhat_1 para de enviar requisições, e é necessário reiniciar os containers ($ docker-compose -f docker-compose-host.yml up --build)
+* apenas o erro de endereço 400 ainda não foi corrigido. é necessario criá-lo no django. entretando, o erro passa a ser 404:
+"
+Not Found: /advance
+[07/Feb/2022 03:30:18] "POST /advance HTTP/1.1" 404 1996
+"
+* este erro também faz com que o echo_hardhat_1 pare de requisitar. é necessario reiniciar os containers a cada erro.
+* para criar as funcionalidades de "advance", altera-se os arquivos "views" e "urls" na pasta appSQL
+
+
+
+
+
+
+
+"
+HTTP_DISPATCHER_URL="http://127.0.0.1:5004" gunicorn --preload --workers 1 --bind 0.0.0.0:5003 echo:app
+"
