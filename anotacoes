@@ -9,10 +9,12 @@ python3 -m venv .env
 . .env/bin/activate
 pip install -r requirements.txt
 "
+*é necessario configurar o arquivo ".vscode" para debug no vscode. os arquivos ".env" e ".vscode" precisam estar na mesma pasta.
+
 $ django-admin startproject testSQL
 $ cd testSQL
 $ python3 manage.py runserver
-*ctrl + C (para para o servidor. o comando anterior foi para iniciar o servidor e testar a instalação e projeto)
+*ctrl + C (para parar o servidor. o comando anterior foi para iniciar o servidor e testar a instalação e projeto)
 *para rodar na porta que se espera receber as requisições(http://0.0.0.0:5003), usar o comando $ python3 manage.py runserver 0:5003
 $ python manage.py startapp appSQL
 *na pasta testSQL, altera-se o arquivo "settings" para acrescentar 'appSQL.apps.AppsqlConfig' no INSTALLED_APPS
@@ -42,7 +44,13 @@ Not Found: /advance
 [07/Feb/2022 03:30:18] "POST /advance HTTP/1.1" 404 1996
 "
 * este erro também faz com que o echo_hardhat_1 pare de requisitar. é necessario reiniciar os containers a cada erro.
-* para criar as funcionalidades de "advance", altera-se os arquivos "views" e "urls" na pasta appSQL
+* para criar as funcionalidades de "advance", altera-se os arquivos "views" e "urls" na pasta appSQL.
+* é necessário remover(comentar) o midleeware 'django.middleware.csrf.CsrfViewMiddleware' no arquivo settings. caso contrario surge erro:
+"
+Forbidden (CSRF cookie not set.): /advance
+[07/Feb/2022 07:22:07] "POST /advance HTTP/1.1" 403 2870
+"
+* conteudo do input estará na variavel "request" na respectiva classe no arquivo "views" 
 
 
 
