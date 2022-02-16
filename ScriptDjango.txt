@@ -1,15 +1,11 @@
-Script started on 2022-02-16 09:43:31-03:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="102" LINES="21"]
-Traceback (most recent call last):
-  File "/usr/lib/python3.8/runpy.py", line 194, in _run_module_as_main
-    return _run_code(code, main_globals, None,
-  File "/usr/lib/python3.8/runpy.py", line 87, in _run_code
-    exec(code, run_globals)
-  File "/home/bruno/.vscode/extensions/ms-python.python-2022.0.1786462952/pythonFiles/lib/python/debugpy/launcher/__main__.py", line 97, in <module>
-    main()
-  File "/home/bruno/.vscode/extensions/ms-python.python-2022.0.1786462952/pythonFiles/lib/python/debugpy/launcher/__main__.py", line 53, in main
-    launcher.connect(host, port)
-  File "/home/bruno/.vscode/extensions/ms-python.python-2022.0.1786462952/pythonFiles/lib/python/debugpy/launcher/../../debugpy/launcher/__init__.py", line 34, in connect
-    sock.connect((host, port))
-ConnectionRefusedError: [Errno 111] Connection refused
+Script started, file is ScriptDjango.txt
+Watching for file changes with StatReloader
+Performing system checks...
 
-Script done on 2022-02-16 09:43:32-03:00 [COMMAND_EXIT_CODE="1"]
+System check identified no issues (0 silenced).
+February 16, 2022 - 12:48:00
+Django version 3.2, using settings 'testSQL.settings'
+Starting development server at http://0.0.0.0:5003/
+Quit the server with CONTROL-C.
+[16/Feb/2022 12:48:43] "POST /advance HTTP/1.1" 200 0
+Script done, file is ScriptDjango.txt
