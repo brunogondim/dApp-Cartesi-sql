@@ -1,0 +1,1006 @@
+Script started on 2022-02-16 09:28:51-03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="146" LINES="52"]
+Building hardhat
+Sending build context to Docker daemon  455.2kB
+Step 1/10 : FROM node:16-buster-slim
+ ---> c0dfc27f4294
+Step 2/10 : RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y     git     && rm -rf /var/lib/apt/lists/*
+ ---> Using cache
+ ---> 1962190b652f
+Step 3/10 : WORKDIR /app
+ ---> Using cache
+ ---> 6f80eeab4ee5
+Step 4/10 : COPY ["package.json", "yarn.lock", "./"]
+ ---> Using cache
+ ---> 48bdb9b190e4
+Step 5/10 : RUN yarn install --non-interactive
+ ---> Using cache
+ ---> 07165a4916aa
+Step 6/10 : COPY . .
+ ---> Using cache
+ ---> e978d1c68441
+Step 7/10 : RUN yarn install --non-interactive
+ ---> Using cache
+ ---> cae8b4aa7f4e
+Step 8/10 : EXPOSE 8545
+ ---> Using cache
+ ---> 065bfc9f53a6
+Step 9/10 : ENTRYPOINT ["npx", "hardhat"]
+ ---> Using cache
+ ---> 8d0a65cb0201
+Step 10/10 : CMD ["node"]
+ ---> Using cache
+ ---> 372aa1e29742
+Successfully built 372aa1e29742
+Successfully tagged echo_hardhat:latest
+Starting echo_hardhat_1 ... 
+Starting echo_database_1 ... 
+Starting echo_server_manager_1 ... 
+[3A[2KStarting echo_hardhat_1        ... [32mdone[0m[3BStarting echo_rollups_dispatcher_1 ... 
+Starting echo_state_server_1       ... 
+Starting echo_rollups_indexer_1    ... 
+[5A[2KStarting echo_database_1           ... [32mdone[0m[5BStarting echo_query_server_1       ... 
+[5A[2KStarting echo_server_manager_1     ... [32mdone[0m[5B[2A[2KStarting echo_rollups_indexer_1    ... [32mdone[0m[2B[4A[2KStarting echo_rollups_dispatcher_1 ... [32mdone[0m[4B[3A[2KStarting echo_state_server_1       ... [32mdone[0m[3B[1A[2KStarting echo_query_server_1       ... [32mdone[0m[1BAttaching to echo_hardhat_1, echo_database_1, echo_server_manager_1, echo_rollups_indexer_1, echo_rollups_dispatcher_1, echo_state_server_1, echo_query_server_1
+[36mdatabase_1            |[0m 
+[36mdatabase_1            |[0m PostgreSQL Database directory appears to contain a database; Skipping initialization
+[36mdatabase_1            |[0m 
+[36mdatabase_1            |[0m 2022-02-16 12:29:00.905 UTC [1] LOG:  starting PostgreSQL 12.9 (Debian 12.9-1.pgdg110+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 10.2.1-6) 10.2.1 20210110, 64-bit
+[36mdatabase_1            |[0m 2022-02-16 12:29:00.906 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+[36mdatabase_1            |[0m 2022-02-16 12:29:00.906 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+[36mdatabase_1            |[0m 2022-02-16 12:29:00.911 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+[36mdatabase_1            |[0m 2022-02-16 12:29:00.998 UTC [24] LOG:  database system was shut down at 2022-02-16 12:27:58 UTC
+[36mdatabase_1            |[0m 2022-02-16 12:29:01.016 UTC [1] LOG:  database system is ready to accept connections
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:05 Waiting for: file:///opt/cartesi/share/blockchain/dapp.json
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:03 Waiting for: file:///opt/cartesi/share/blockchain/dapp.json
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:04 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:04 Waiting for: tcp://state_server:50051
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:04 Waiting for: tcp://server_manager:5001
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:04 Connected to tcp://server_manager:5001
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:00Z INFO  host_server_manager] Config {
+[36;1mserver_manager_1      |[0m         grpc_server_manager_address: "0.0.0.0",
+[36;1mserver_manager_1      |[0m         grpc_server_manager_port: 5001,
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:05 Problem with dial: dial tcp 172.22.0.7:50051: connect: connection refused. Sleeping 1s
+[33;1mstate_server_1        |[0m 2022/02/16 12:29:05 Waiting for: file:///opt/cartesi/share/blockchain/dapp.json
+[36;1mserver_manager_1      |[0m         http_inspect_address: "0.0.0.0",
+[36;1mserver_manager_1      |[0m         http_inspect_port: 5002,
+[36;1mserver_manager_1      |[0m         dapp_http_address: "host.docker.internal",
+[36;1mserver_manager_1      |[0m         dapp_http_port: 5003,
+[36;1mserver_manager_1      |[0m         http_dispatcher_address: "0.0.0.0",
+[36;1mserver_manager_1      |[0m         http_dispatcher_port: 5004,
+[36;1mserver_manager_1      |[0m     }
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:00Z INFO  host_server_manager::controller] setting state to idle
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:00Z INFO  actix_server::builder] Starting 1 workers
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:00Z INFO  actix_server::server] Actix runtime found; starting in Actix runtime
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:00Z INFO  actix_server::builder] Starting 1 workers
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:00Z INFO  actix_server::server] Actix runtime found; starting in Actix runtime
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:06 Problem with dial: dial tcp 172.22.0.7:50051: connect: connection refused. Sleeping 1s
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:06 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:06 Waiting for: tcp://state_server:50051
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:06 Waiting for: tcp://server_manager:5001
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:06 Problem with dial: dial tcp 172.22.0.7:50051: connect: connection refused. Sleeping 1s
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:06 Connected to tcp://server_manager:5001
+[33;1mstate_server_1        |[0m 2022/02/16 12:29:06 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[33;1mstate_server_1        |[0m StateFoldServer listening on 0.0.0.0:50051
+[32mquery_server_1        |[0m yarn run v1.22.17
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:07 Connected to tcp://state_server:50051
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:07 Waiting for: tcp://database:5432
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:07 Connected to tcp://database:5432
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:07 Connected to tcp://state_server:50051
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:29:07.833514Z[0m [32m INFO[0m [2moffchain_main[0m[2m:[0m Starting rollups dispatcher with config `ApplicationConfig {
+[35mrollups_dispatcher_1  |[0m     basic_config: Config {
+[35mrollups_dispatcher_1  |[0m         contracts: {},
+[35mrollups_dispatcher_1  |[0m         url: "http://localhost:8545",
+[35mrollups_dispatcher_1  |[0m         ws_url: None,
+[35mrollups_dispatcher_1  |[0m         wallet: Some(
+[35mrollups_dispatcher_1  |[0m             Wallet {
+[35mrollups_dispatcher_1  |[0m                 address: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266,
+[35mrollups_dispatcher_1  |[0m                 chain_Id: 1,
+[35mrollups_dispatcher_1  |[0m             },
+[35mrollups_dispatcher_1  |[0m         ),
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     logic_config: LogicConfig {
+[35mrollups_dispatcher_1  |[0m         mnemonic: "test test test test test test test test test test test junk",
+[35mrollups_dispatcher_1  |[0m         chain_id: 31337,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m         provider_http_endpoint: "http://hardhat:8545",
+[35mrollups_dispatcher_1  |[0m         ws_endpoint: "ws://hardhat:8545",
+[35mrollups_dispatcher_1  |[0m         state_fold_grpc_endpoint: "http://state_server:50051",
+[35mrollups_dispatcher_1  |[0m         mm_endpoint: "http://server_manager:5001",
+[35mrollups_dispatcher_1  |[0m         session_id: "default_rollups_id",
+[35mrollups_dispatcher_1  |[0m         gas_multiplier: Some(
+[35mrollups_dispatcher_1  |[0m             1.0,
+[35mrollups_dispatcher_1  |[0m         ),
+[35mrollups_dispatcher_1  |[0m         gas_price_multiplier: Some(
+[35mrollups_dispatcher_1  |[0m             1.0,
+[35mrollups_dispatcher_1  |[0m         ),
+[35mrollups_dispatcher_1  |[0m         rate: 20,
+[35mrollups_dispatcher_1  |[0m         confirmations: 10,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     sf_config: SFConfig {
+[35mrollups_dispatcher_1  |[0m         concurrent_events_fetch: 16,
+[35mrollups_dispatcher_1  |[0m         genesis_block: 1,
+[35mrollups_dispatcher_1  |[0m         query_limit_error_codes: [
+[35mrollups_dispatcher_1  |[0m             -32005,
+[35mrollups_dispatcher_1  |[0m         ],
+[35mrollups_dispatcher_1  |[0m         safety_margin: 1,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     bs_config: BSConfig {
+[35mrollups_dispatcher_1  |[0m         max_delay: 64s,
+[35mrollups_dispatcher_1  |[0m         max_retries: 5,
+[35mrollups_dispatcher_1  |[0m         subscriber_timeout: 120s,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     tm_config: TMConfig {
+[35mrollups_dispatcher_1  |[0m         max_delay: 64s,
+[35mrollups_dispatcher_1  |[0m         max_retries: 5,
+[35mrollups_dispatcher_1  |[0m         transaction_timeout: 5s,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m }`
+[32mquery_server_1        |[0m $ sequelize-cli db:migrate
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:29:07.835232Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Creating block subscriber with endpoint `ws://hardhat:8545`
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46690), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:08Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:08Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:08Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[34mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:08 GMT"} } } }
+[32;1mrollups_indexer_1     |[0m 2022/02/16 12:29:11 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[32;1mrollups_indexer_1     |[0m 2022/02/16 12:29:11 Waiting for: tcp://state_server:50051
+[32;1mrollups_indexer_1     |[0m 2022/02/16 12:29:11 Waiting for: tcp://server_manager:5001
+[32;1mrollups_indexer_1     |[0m 2022/02/16 12:29:11 Connected to tcp://state_server:50051
+[32;1mrollups_indexer_1     |[0m 2022/02/16 12:29:11 Connected to tcp://server_manager:5001
+[32;1mrollups_indexer_1     |[0m 2022/02/16 12:29:11 Waiting for: tcp://database:5432
+[32;1mrollups_indexer_1     |[0m 2022/02/16 12:29:11 Connected to tcp://database:5432
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46726), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:12Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:12Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:12Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[32;1mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:12 GMT"} } } }
+[32mquery_server_1        |[0m 
+[32mquery_server_1        |[0m [4mSequelize CLI [Node: 12.22.8, CLI: 6.3.0, ORM: 6.12.4][24m
+[32mquery_server_1        |[0m 
+[34mecho_rollups_indexer_1 exited with code 1
+[0m[32mquery_server_1        |[0m host: database
+[32mquery_server_1        |[0m Loaded configuration file "src/db/config/config.js".
+[32mquery_server_1        |[0m Using environment "development".
+[32mquery_server_1        |[0m No migrations were executed, database schema was already up to date.
+[32mquery_server_1        |[0m Done in 7.79s.
+[35;1mrollups_indexer_1     |[0m 2022/02/16 12:29:16 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[35;1mrollups_indexer_1     |[0m 2022/02/16 12:29:16 Waiting for: tcp://state_server:50051
+[35;1mrollups_indexer_1     |[0m 2022/02/16 12:29:16 Waiting for: tcp://server_manager:5001
+[35;1mrollups_indexer_1     |[0m 2022/02/16 12:29:16 Connected to tcp://state_server:50051
+[35;1mrollups_indexer_1     |[0m 2022/02/16 12:29:16 Connected to tcp://server_manager:5001
+[35;1mrollups_indexer_1     |[0m 2022/02/16 12:29:16 Waiting for: tcp://database:5432
+[35;1mrollups_indexer_1     |[0m 2022/02/16 12:29:16 Connected to tcp://database:5432
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46762), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:16Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:16Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:16Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[35;1mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:16 GMT"} } } }
+[32mquery_server_1        |[0m yarn run v1.22.17
+[32;1mecho_rollups_indexer_1 exited with code 1
+[0m[32mquery_server_1        |[0m $ nodemon src/index.ts
+[32mquery_server_1        |[0m [33m[nodemon] 2.0.15[39m
+[32mquery_server_1        |[0m [33m[nodemon] to restart at any time, enter `rs`[39m
+[32mquery_server_1        |[0m [33m[nodemon] watching path(s): *.*[39m
+[32mquery_server_1        |[0m [33m[nodemon] watching extensions: ts,json[39m
+[32mquery_server_1        |[0m [32m[nodemon] starting `ts-node src/index.ts`[39m
+[34;1mrollups_indexer_1     |[0m 2022/02/16 12:29:20 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[34;1mrollups_indexer_1     |[0m 2022/02/16 12:29:20 Waiting for: tcp://state_server:50051
+[34;1mrollups_indexer_1     |[0m 2022/02/16 12:29:20 Waiting for: tcp://server_manager:5001
+[34;1mrollups_indexer_1     |[0m 2022/02/16 12:29:20 Connected to tcp://state_server:50051
+[34;1mrollups_indexer_1     |[0m 2022/02/16 12:29:20 Connected to tcp://server_manager:5001
+[34;1mrollups_indexer_1     |[0m 2022/02/16 12:29:20 Waiting for: tcp://database:5432
+[34;1mrollups_indexer_1     |[0m 2022/02/16 12:29:20 Connected to tcp://database:5432
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:20Z INFO  host_server_manager::grpc::server_manager] received get_version
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46796), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:20Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:20Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[34;1mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:20 GMT"} } } }
+[35;1mecho_rollups_indexer_1 exited with code 1
+[0m[36mrollups_indexer_1     |[0m 2022/02/16 12:29:24 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[36mrollups_indexer_1     |[0m 2022/02/16 12:29:24 Waiting for: tcp://state_server:50051
+[36mrollups_indexer_1     |[0m 2022/02/16 12:29:24 Waiting for: tcp://server_manager:5001
+[36mrollups_indexer_1     |[0m 2022/02/16 12:29:24 Connected to tcp://state_server:50051
+[36mrollups_indexer_1     |[0m 2022/02/16 12:29:24 Connected to tcp://server_manager:5001
+[36mrollups_indexer_1     |[0m 2022/02/16 12:29:24 Waiting for: tcp://database:5432
+[36mrollups_indexer_1     |[0m 2022/02/16 12:29:24 Connected to tcp://database:5432
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46832), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:25Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:25Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:25Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:25 GMT"} } } }
+[34;1mecho_rollups_indexer_1 exited with code 1
+[0m[33mrollups_indexer_1     |[0m 2022/02/16 12:29:30 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[33mrollups_indexer_1     |[0m 2022/02/16 12:29:30 Waiting for: tcp://state_server:50051
+[33mrollups_indexer_1     |[0m 2022/02/16 12:29:30 Waiting for: tcp://server_manager:5001
+[33mrollups_indexer_1     |[0m 2022/02/16 12:29:30 Connected to tcp://state_server:50051
+[33mrollups_indexer_1     |[0m 2022/02/16 12:29:30 Connected to tcp://server_manager:5001
+[33mrollups_indexer_1     |[0m 2022/02/16 12:29:30 Waiting for: tcp://database:5432
+[33mrollups_indexer_1     |[0m 2022/02/16 12:29:30 Connected to tcp://database:5432
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46866), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:30Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:30Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:30Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[33mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:30 GMT"} } } }
+[36mecho_rollups_indexer_1 exited with code 1
+[0m[32mrollups_indexer_1     |[0m 2022/02/16 12:29:35 Waiting for: file:///opt/cartesi/share/blockchain/dapp.json
+[32mrollups_indexer_1     |[0m 2022/02/16 12:29:36 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[32mrollups_indexer_1     |[0m 2022/02/16 12:29:36 Waiting for: tcp://state_server:50051
+[32mrollups_indexer_1     |[0m 2022/02/16 12:29:36 Waiting for: tcp://server_manager:5001
+[32mrollups_indexer_1     |[0m 2022/02/16 12:29:36 Connected to tcp://state_server:50051
+[32mrollups_indexer_1     |[0m 2022/02/16 12:29:36 Connected to tcp://server_manager:5001
+[32mrollups_indexer_1     |[0m 2022/02/16 12:29:36 Waiting for: tcp://database:5432
+[32mrollups_indexer_1     |[0m 2022/02/16 12:29:36 Connected to tcp://database:5432
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:36Z INFO  host_server_manager::grpc::server_manager] received get_version
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46898), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:36Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:36Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[32mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:36 GMT"} } } }
+[33mecho_rollups_indexer_1 exited with code 1
+[0m[35mrollups_dispatcher_1  |[0m Error: MiddlewareFactoryError { source: RetryLimitReached { retries: 5, last_error: ProviderError { source: JsonRpcClientError(TungsteniteError(Io(Os { code: 111, kind: ConnectionRefused, message: "Connection refused" }))) } } }
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:47 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:47 Waiting for: tcp://state_server:50051
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:47 Waiting for: tcp://server_manager:5001
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:47 Connected to tcp://state_server:50051
+[35mrollups_dispatcher_1  |[0m 2022/02/16 12:29:47 Connected to tcp://server_manager:5001
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:29:47.215478Z[0m [32m INFO[0m [2moffchain_main[0m[2m:[0m Starting rollups dispatcher with config `ApplicationConfig {
+[35mrollups_dispatcher_1  |[0m     basic_config: Config {
+[35mrollups_dispatcher_1  |[0m         contracts: {},
+[35mrollups_dispatcher_1  |[0m         url: "http://localhost:8545",
+[35mrollups_dispatcher_1  |[0m         ws_url: None,
+[35mrollups_dispatcher_1  |[0m         wallet: Some(
+[35mrollups_dispatcher_1  |[0m             Wallet {
+[35mrollups_dispatcher_1  |[0m                 address: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266,
+[35mrollups_dispatcher_1  |[0m                 chain_Id: 1,
+[35mrollups_dispatcher_1  |[0m             },
+[35mrollups_dispatcher_1  |[0m         ),
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     logic_config: LogicConfig {
+[35mrollups_dispatcher_1  |[0m         mnemonic: "test test test test test test test test test test test junk",
+[35mrollups_dispatcher_1  |[0m         chain_id: 31337,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m         provider_http_endpoint: "http://hardhat:8545",
+[35mrollups_dispatcher_1  |[0m         ws_endpoint: "ws://hardhat:8545",
+[35mrollups_dispatcher_1  |[0m         state_fold_grpc_endpoint: "http://state_server:50051",
+[35mrollups_dispatcher_1  |[0m         mm_endpoint: "http://server_manager:5001",
+[35mrollups_dispatcher_1  |[0m         session_id: "default_rollups_id",
+[35mrollups_dispatcher_1  |[0m         gas_multiplier: Some(
+[35mrollups_dispatcher_1  |[0m             1.0,
+[35mrollups_dispatcher_1  |[0m         ),
+[35mrollups_dispatcher_1  |[0m         gas_price_multiplier: Some(
+[35mrollups_dispatcher_1  |[0m             1.0,
+[35mrollups_dispatcher_1  |[0m         ),
+[35mrollups_dispatcher_1  |[0m         rate: 20,
+[35mrollups_dispatcher_1  |[0m         confirmations: 10,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     sf_config: SFConfig {
+[35mrollups_dispatcher_1  |[0m         concurrent_events_fetch: 16,
+[35mrollups_dispatcher_1  |[0m         genesis_block: 1,
+[35mrollups_dispatcher_1  |[0m         query_limit_error_codes: [
+[35mrollups_dispatcher_1  |[0m             -32005,
+[35mrollups_dispatcher_1  |[0m         ],
+[35mrollups_dispatcher_1  |[0m         safety_margin: 1,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     bs_config: BSConfig {
+[35mrollups_dispatcher_1  |[0m         max_delay: 64s,
+[35mrollups_dispatcher_1  |[0m         max_retries: 5,
+[35mrollups_dispatcher_1  |[0m         subscriber_timeout: 120s,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     tm_config: TMConfig {
+[35mrollups_dispatcher_1  |[0m         max_delay: 64s,
+[35mrollups_dispatcher_1  |[0m         max_retries: 5,
+[35mrollups_dispatcher_1  |[0m         transaction_timeout: 5s,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m }`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:29:47.221281Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Creating block subscriber with endpoint `ws://hardhat:8545`
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:47 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:47 Waiting for: tcp://state_server:50051
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:47 Waiting for: tcp://server_manager:5001
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:47 Connected to tcp://state_server:50051
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:47 Connected to tcp://server_manager:5001
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:47 Waiting for: tcp://database:5432
+[34mrollups_indexer_1     |[0m 2022/02/16 12:29:47 Connected to tcp://database:5432
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46940), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:47Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:47Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:29:47Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[34mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:29:47 GMT"} } } }
+[32mecho_rollups_indexer_1 exited with code 1
+[0m[36;1mrollups_indexer_1     |[0m 2022/02/16 12:30:03 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[36;1mrollups_indexer_1     |[0m 2022/02/16 12:30:03 Waiting for: tcp://state_server:50051
+[36;1mrollups_indexer_1     |[0m 2022/02/16 12:30:03 Waiting for: tcp://server_manager:5001
+[36;1mrollups_indexer_1     |[0m 2022/02/16 12:30:03 Connected to tcp://state_server:50051
+[36;1mrollups_indexer_1     |[0m 2022/02/16 12:30:03 Connected to tcp://server_manager:5001
+[36;1mrollups_indexer_1     |[0m 2022/02/16 12:30:03 Waiting for: tcp://database:5432
+[36;1mrollups_indexer_1     |[0m 2022/02/16 12:30:03 Connected to tcp://database:5432
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:46982), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:03Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:03Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:03Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mrollups_indexer_1     |[0m Error: TonicStatusError { source: Status { code: Unavailable, message: "Access error: Ethers provider error: error sending request for url (http://hardhat:8545/): error trying to connect: tcp connect error: Connection refused (os error 111)", metadata: MetadataMap { headers: {"content-type": "application/grpc", "date": "Wed, 16 Feb 2022 12:30:03 GMT"} } } }
+[34mecho_rollups_indexer_1 exited with code 1
+[0m[33mhardhat_1             |[0m Nothing to compile
+[33mhardhat_1             |[0m No need to generate any newer typings.
+[33mhardhat_1             |[0m deploying "BitsManipulation" (tx: 0x517498de54c1c30525a68a79974070af07067770e913a9f25a8c7844df64b3a0)...: deployed at 0x5FbDB2315678afecb367f032d93F642f64180aa3 with 376733 gas
+[33mhardhat_1             |[0m deploying "Bitmask" (tx: 0xc6885a17a35d339e5d669b8beb485b75cfe164f192703a913fe371ee351eba5a)...: deployed at 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512 with 164134 gas
+[33mhardhat_1             |[0m deploying "CartesiMath" (tx: 0x7ade92f7ba8f601e08c7d0d3c49df65533e1d6cb495b8fcaac7aeef5f63d8659)...: deployed at 0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0 with 479702 gas
+[33mhardhat_1             |[0m deploying "Merkle" (tx: 0xe4cbd6e1b8cbef8003127d5f041b21c21a84068f49c260190b1fc21964eb35cd)...: deployed at 0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9 with 1317703 gas
+[33mhardhat_1             |[0m deploying "WorkerManagerImpl" (tx: 0x7a5cf95d0aed9f45b4067319e731a5e7ae16220b11daa8f326b48f6293c857bc)...: deployed at 0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9 with 571031 gas
+[33mhardhat_1             |[0m deploying "WorkerAuthManagerImpl" (tx: 0x7a4792ed907c93f174bd72de48d6e9c24dc679b57bbb861923aeb90a6756295b)...: deployed at 0x5FC8d32690cc91D4c39d9d3abcBD16989F875707 with 425367 gas
+[33mhardhat_1             |[0m deploying "WorkerManagerAuthManagerImpl" (tx: 0xe98b661726674730ed6df15d10b58950dd05412308a6300f0d49a0ca9bdb0d5a)...: deployed at 0x0165878A594ca255338adfa4d48449f69242Eb8F with 773218 gas
+[33mhardhat_1             |[0m dapp configuration loaded from /app/.dapprc.json
+[33mhardhat_1             |[0m deploying "RollupsImpl" (tx: 0xafcdd29345cff1d60abb5a1e2fd8c19a69f9bffecdaf29c2017731e131b665a4)...: deployed at 0xa513E6E4b8f2a923D98304ec87F64353C4D5C853 with 3188872 gas
+[33mhardhat_1             |[0m deploying "EtherPortalImpl" (tx: 0x1182f4723de4a1897e1f369a77ca24227ef0f5d2f9ec396db56b0ed34831bc03)...: deployed at 0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6 with 308806 gas
+[33mhardhat_1             |[0m deploying "ERC20PortalImpl" (tx: 0x139093372b773746888cd67d442fa0248af05b2beee211eb2731fa527342d502)...: deployed at 0x8A791620dd6260079BF849Dc5567aDC3F2FdC318 with 399950 gas
+[33mhardhat_1             |[0m Started HTTP and WebSocket JSON-RPC server at http://0.0.0.0:8545/
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Accounts
+[33mhardhat_1             |[0m ========
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m WARNING: These accounts, and their private keys, are publicly known.
+[33mhardhat_1             |[0m Any funds sent to them on Mainnet or any other live network WILL BE LOST.
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #0: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #1: 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #2: 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #3: 0x90f79bf6eb2c4f870365e785982e1f101e93b906 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #4: 0x15d34aaf54267db7d7c367839aaf71a00a2c6a65 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #5: 0x9965507d1a55bcc2695c58ba16fb37d819b0a4dc (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #6: 0x976ea74026e726554db657fa54763abd0c3a0aa9 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x92db14e403b83dfe3df233f83dfa3a0d7096f21ca9b0d6d6b8d88b2b4ec1564e
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #7: 0x14dc79964da2c08b23698b3d3cc7ca32193d9955 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x4bbbf85ce3377467afe5d46f804f221813b2bb87f24d81f60f1fcdbf7cbf4356
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #8: 0x23618e81e3f5cdf7f54c3d65f7fbc0abf5b21e8f (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xdbda1821b80551c9d65939329250298aa3472ba22feea921c0cf5d620ea67b97
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #9: 0xa0ee7a142d267c1f36714e4a8f75612f20a79720 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x2a871d0798f97d79848a013d4936a73bf4cc922c825d33c1cf7073dff6d409c6
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #10: 0xbcd4042de499d14e55001ccbb24a551f3b954096 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xf214f2b2cd398c806f84e317254e0f0b801d0643303237d97a22a48e01628897
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #11: 0x71be63f3384f5fb98995898a86b02fb2426c5788 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x701b615bbdfb9de65240bc28bd21bbc0d996645a3dd57e7b12bc2bdf6f192c82
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #12: 0xfabb0ac9d68b0b445fb7357272ff202c5651694a (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xa267530f49f8280200edf313ee7af6b827f2a8bce2897751d06a843f644967b1
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #13: 0x1cbd3b2770909d4e10f157cabc84c7264073c9ec (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x47c99abed3324a2707c28affff1267e45918ec8c3f20b8aa892e8b065d2942dd
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #14: 0xdf3e18d64bc6a983f673ab319ccae4f1a57c7097 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xc526ee95bf44d8fc405a158bb884d9d1238d99f0612e9f33d006bb0789009aaa
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #15: 0xcd3b766ccdd6ae721141f452c550ca635964ce71 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x8166f546bab6da521a8369cab06c5d2b9e46670292d85c875ee9ec20e84ffb61
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #16: 0x2546bcd3c84621e976d8185a91a922ae77ecec30 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xea6c44ac03bff858b476bba40716402b03e41b8e97e276d1baec7c37d42484a0
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #17: 0xbda5747bfd65f08deb54cb465eb87d40e51b197e (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0x689af8efa8c651a91ad287602527f3af2fe9f6501a7ac4b061667b5a93e037fd
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #18: 0xdd2fd4581271e230360230f9337d5c0430bf44c0 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xde9be858da4a475276426320d5e9262ecfc3ba460bfac56360bfa6c4c28b4ee0
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m Account #19: 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199 (10000 ETH)
+[33mhardhat_1             |[0m Private Key: 0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m WARNING: These accounts, and their private keys, are publicly known.
+[33mhardhat_1             |[0m Any funds sent to them on Mainnet or any other live network WILL BE LOST.
+[33mhardhat_1             |[0m 
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.019008Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Creating transaction manager with endpoint `http://hardhat:8545`
+[33mhardhat_1             |[0m eth_subscribe
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0x5fbdb2315678afecb367f032d93f642f64180aa3
+[33mhardhat_1             |[0m   Transaction:         0x517498de54c1c30525a68a79974070af07067770e913a9f25a8c7844df64b3a0
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            376733 of 376733
+[33mhardhat_1             |[0m   Block #1:            0x9bcdf3fc04d46d74868bc838505a50194d1401375df91622d19f8ee24a207219
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0xe7f1725e7734ce288f8367e1bb143e90bb3f0512
+[33mhardhat_1             |[0m   Transaction:         0xc6885a17a35d339e5d669b8beb485b75cfe164f192703a913fe371ee351eba5a
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            164134 of 164134
+[33mhardhat_1             |[0m   Block #2:            0x83ce3d4b7d810f152a11213a3cf0e155a7619439fb6c0fdaac46b5cf0f4d9c74
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
+[33mhardhat_1             |[0m   Transaction:         0x7ade92f7ba8f601e08c7d0d3c49df65533e1d6cb495b8fcaac7aeef5f63d8659
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            479702 of 479702
+[33mhardhat_1             |[0m   Block #3:            0x46f3be6358bc901f94ce92cd03bc55b210c590f706eae787b7e8f86ba89af279
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0xcf7ed3acca5a467e9e704c703e8d87f634fb0fc9
+[33mhardhat_1             |[0m   Transaction:         0xe4cbd6e1b8cbef8003127d5f041b21c21a84068f49c260190b1fc21964eb35cd
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            1317703 of 1317703
+[33mhardhat_1             |[0m   Block #4:            0xa798647d4cea7ef6d14e1f702e96d568c2aad8cbbabc91de09936f60ffc613b2
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0xdc64a140aa3e981100a9beca4e685f962f0cf6c9
+[33mhardhat_1             |[0m   Transaction:         0x7a5cf95d0aed9f45b4067319e731a5e7ae16220b11daa8f326b48f6293c857bc
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            571031 of 571031
+[33mhardhat_1             |[0m   Block #5:            0x2c537ed0c9d881b09cea18ebd841ffbdada0e318eeb62ec3de4488341792ebf5
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0x5fc8d32690cc91d4c39d9d3abcbd16989f875707
+[33mhardhat_1             |[0m   Transaction:         0x7a4792ed907c93f174bd72de48d6e9c24dc679b57bbb861923aeb90a6756295b
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            425367 of 425367
+[33mhardhat_1             |[0m   Block #6:            0x572ec9eb748945894a321f649867e59b53d2c97c56764913335821cd926eeebb
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0x0165878a594ca255338adfa4d48449f69242eb8f
+[33mhardhat_1             |[0m   Transaction:         0xe98b661726674730ed6df15d10b58950dd05412308a6300f0d49a0ca9bdb0d5a
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            773218 of 773218
+[33mhardhat_1             |[0m   Block #7:            0x4028c854a2023b2e55f4006d011f69dee16c974214eca92f0816dd57f417fade
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0xa513e6e4b8f2a923d98304ec87f64353c4d5c853
+[33mhardhat_1             |[0m   Transaction:         0xafcdd29345cff1d60abb5a1e2fd8c19a69f9bffecdaf29c2017731e131b665a4
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            3188872 of 3188872
+[33mhardhat_1             |[0m   Block #8:            0xedc99677b8463bd2afed141c1b1d431a00bdb128af037eced65a03a838784a64
+[33mhardhat_1             |[0m   Contract call:       <UnrecognizedContract>
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   To:                  0xa513e6e4b8f2a923d98304ec87f64353c4d5c853
+[33mhardhat_1             |[0m   Contract call:       <UnrecognizedContract>
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   To:                  0xa513e6e4b8f2a923d98304ec87f64353c4d5c853
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.216239Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Dispatcher running with validator address `0xf39f…2266`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.217626Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Instantiating rollups contract at address `0xa513…c853`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.217988Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Creating state-fold server gRPC connection at endpoint `http://state_server:50051`
+[33mhardhat_1             |[0m   Contract address:    0x2279b7a0a67db372996a5fab50d91eaa73d2ebe6
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.221838Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Creating rollup machine manager gRPC connection at endpoint `http://server_manager:5001` with session id `default_rollups_id`
+[33mhardhat_1             |[0m   Transaction:         0x1182f4723de4a1897e1f369a77ca24227ef0f5d2f9ec396db56b0ed34831bc03
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:20Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:20Z INFO  host_server_manager::grpc::server_manager] received start_session with id=default_rollups_id
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.226919Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Starting block-subscriber subscription
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.227233Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Entering main loop...
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:30:20.227311Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Awaiting new blocks...
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            308806 of 308806
+[33mhardhat_1             |[0m   Block #9:            0x77eb9777d5949d039e77a9c5d502314d1aa2ff2ef8a81b5a61e7c0fea324f1b1
+[33mhardhat_1             |[0m   Contract deployment: <UnrecognizedContract>
+[33mhardhat_1             |[0m   Contract address:    0x8a791620dd6260079bf849dc5567adc3f2fdc318
+[33mhardhat_1             |[0m   Transaction:         0x139093372b773746888cd67d442fa0248af05b2beee211eb2731fa527342d502
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            399950 of 399950
+[33mhardhat_1             |[0m   Block #10:           0xadc464e571cf347b2d3eba12a578d9418ca18e28d3aaabe17997eeec6af4a2e2
+[33mhardhat_1             |[0m 
+[32mquery_server_1        |[0m host: database
+[33;1mrollups_indexer_1     |[0m 2022/02/16 12:30:32 File file:///opt/cartesi/share/blockchain/dapp.json had been generated
+[33;1mrollups_indexer_1     |[0m 2022/02/16 12:30:32 Waiting for: tcp://state_server:50051
+[33;1mrollups_indexer_1     |[0m 2022/02/16 12:30:32 Waiting for: tcp://server_manager:5001
+[33;1mrollups_indexer_1     |[0m 2022/02/16 12:30:32 Connected to tcp://server_manager:5001
+[33;1mrollups_indexer_1     |[0m 2022/02/16 12:30:32 Connected to tcp://state_server:50051
+[33;1mrollups_indexer_1     |[0m 2022/02/16 12:30:32 Waiting for: tcp://database:5432
+[33;1mrollups_indexer_1     |[0m 2022/02/16 12:30:32 Connected to tcp://database:5432
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:32Z INFO  host_server_manager::grpc::server_manager] received get_version
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:32Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:32Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:32Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getLogs
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_getLogs
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_accounts
+[33mhardhat_1             |[0m eth_call
+[33mhardhat_1             |[0m   Contract call:       <UnrecognizedContract>
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   To:                  0xa513e6e4b8f2a923d98304ec87f64353c4d5c853
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m eth_getLogs
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByNumber (2)
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_getLogs
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_getLogs
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByHash (2)
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByHash (2)
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByHash (2)
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByHash (2)
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:42Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:42Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:42Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:42Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:52Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:52Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:52Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:30:52Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (2)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[32mquery_server_1        |[0m 
+[32mquery_server_1        |[0m 🚀      GraphQL is now running on http://localhost:4000/graphql
+[32mquery_server_1        |[0m Connected to database successfully
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:02Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:02Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:02Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:02Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (3)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:12Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:12Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:12Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:12Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_getBlockByNumber (4)
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:22Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:22Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:22Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:22Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (5)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:32Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:32Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:32Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:32Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (6)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:42Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:42Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:42Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:42Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_getBlockByNumber (7)
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:52Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:52Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:52Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:52Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_getBlockByNumber (8)
+[33mhardhat_1             |[0m web3_clientVersion
+[33mhardhat_1             |[0m eth_chainId
+[33mhardhat_1             |[0m eth_accounts
+[33mhardhat_1             |[0m eth_chainId
+[33mhardhat_1             |[0m eth_chainId (2)
+[33mhardhat_1             |[0m eth_call
+[33mhardhat_1             |[0m   Contract call:       <UnrecognizedContract>
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   To:                  0xa513e6e4b8f2a923d98304ec87f64353c4d5c853
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m eth_chainId
+[33mhardhat_1             |[0m eth_call
+[33mhardhat_1             |[0m   Contract call:       <UnrecognizedContract>
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[33mhardhat_1             |[0m   To:                  0xa513e6e4b8f2a923d98304ec87f64353c4d5c853
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m eth_blockNumber
+[33mhardhat_1             |[0m eth_chainId
+[33mhardhat_1             |[0m eth_chainId (2)
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.010758Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Dispatcher received new block `Block {
+[35mrollups_dispatcher_1  |[0m     hash: 0x72ba35a69560768b5a74ac517d947e993aca2ccef4eabe35b246f69a5d8a2d3b,
+[35mrollups_dispatcher_1  |[0m     number: 11,
+[35mrollups_dispatcher_1  |[0m     parent_hash: 0xadc464e571cf347b2d3eba12a578d9418ca18e28d3aaabe17997eeec6af4a2e2,
+[35mrollups_dispatcher_1  |[0m     timestamp: 1645014714,
+[35mrollups_dispatcher_1  |[0m     logs_bloom: 0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+[35mrollups_dispatcher_1  |[0m }`
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.5:51596), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.011780Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying state-fold server latest state
+[33mhardhat_1             |[0m eth_estimateGas
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:56Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.662066Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting on state `RollupsState {
+[35mrollups_dispatcher_1  |[0m     constants: ImmutableState {
+[35mrollups_dispatcher_1  |[0m         input_duration: 86400,
+[35mrollups_dispatcher_1  |[0m         challenge_period: 604800,
+[35mrollups_dispatcher_1  |[0m         contract_creation_timestamp: 1645014615,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         output_contract_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         validator_contract_address: 0x80e2e2367c5e9d070ae2d6d50bf0cdf6360a7151,
+[35mrollups_dispatcher_1  |[0m         dispute_contract_address: 0x0433d874a28147db0b330c000fcc50c0f0baf425,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m     finalized_epochs: FinalizedEpochs {
+[35mrollups_dispatcher_1  |[0m         finalized_epochs: [],
+[35mrollups_dispatcher_1  |[0m         initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_epoch: AccumulatingEpoch {
+[35mrollups_dispatcher_1  |[0m         epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m         inputs: EpochInputState {
+[35mrollups_dispatcher_1  |[0m             epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m             inputs: [],
+[35mrollups_dispatcher_1  |[0m             input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         },
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_phase: InputAccumulation,
+[35mrollups_dispatcher_1  |[0m     output_state: OutputState {
+[35mrollups_dispatcher_1  |[0m         output_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         vouchers: {},
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m }`
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.5:51596), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_getBlockByNumber (2)
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:56Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:56Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:56Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (3)
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.662603Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying machine manager for current epoch status
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.665439Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Current epoch status: EpochStatus {
+[35mrollups_dispatcher_1  |[0m     epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m     processed_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     pending_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     is_active: true,
+[35mrollups_dispatcher_1  |[0m }
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.665596Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_of_finalized_epochs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager epoch number `0` ahead of finalized_epochs `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.665688Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m InputAccumulation phase; enqueueing inputs
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.5:51596), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.665766Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Enqueue inputs for accumulating epoch `0`; machine manager in epoch `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.665846Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m[1menqueue_remaning_inputs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager has processed all current inputs
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.665932Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting done
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.666001Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Awaiting new blocks...
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.666072Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Dispatcher received new block `Block {
+[35mrollups_dispatcher_1  |[0m     hash: 0x4c3dbc3cdff582b723c7e11b0a759ab167a753df19f7b35dcf64d6f3f3097d9b,
+[35mrollups_dispatcher_1  |[0m     number: 11,
+[35mrollups_dispatcher_1  |[0m     parent_hash: 0xadc464e571cf347b2d3eba12a578d9418ca18e28d3aaabe17997eeec6af4a2e2,
+[35mrollups_dispatcher_1  |[0m     timestamp: 1645014715,
+[35mrollups_dispatcher_1  |[0m     logs_bloom: 0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+[35mrollups_dispatcher_1  |[0m }`
+[33mhardhat_1             |[0m eth_feeHistory
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.666320Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying state-fold server latest state
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.672836Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting on state `RollupsState {
+[35mrollups_dispatcher_1  |[0m     constants: ImmutableState {
+[35mrollups_dispatcher_1  |[0m         input_duration: 86400,
+[35mrollups_dispatcher_1  |[0m         challenge_period: 604800,
+[35mrollups_dispatcher_1  |[0m         contract_creation_timestamp: 1645014615,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         output_contract_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         validator_contract_address: 0x80e2e2367c5e9d070ae2d6d50bf0cdf6360a7151,
+[35mrollups_dispatcher_1  |[0m         dispute_contract_address: 0x0433d874a28147db0b330c000fcc50c0f0baf425,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m     finalized_epochs: FinalizedEpochs {
+[35mrollups_dispatcher_1  |[0m         finalized_epochs: [],
+[35mrollups_dispatcher_1  |[0m         initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_epoch: AccumulatingEpoch {
+[35mrollups_dispatcher_1  |[0m         epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m         inputs: EpochInputState {
+[35mrollups_dispatcher_1  |[0m             epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m             inputs: [],
+[35mrollups_dispatcher_1  |[0m             input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         },
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_phase: InputAccumulation,
+[35mrollups_dispatcher_1  |[0m     output_state: OutputState {
+[35mrollups_dispatcher_1  |[0m         output_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         vouchers: {},
+[35mrollups_dispatcher_1  |[0m     },
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:56Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:56Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[35mrollups_dispatcher_1  |[0m }`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.673863Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying machine manager for current epoch status
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.675449Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Current epoch status: EpochStatus {
+[35mrollups_dispatcher_1  |[0m     epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m     processed_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     pending_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     is_active: true,
+[35mrollups_dispatcher_1  |[0m }
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.675815Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_of_finalized_epochs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager epoch number `0` ahead of finalized_epochs `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.675929Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m InputAccumulation phase; enqueueing inputs
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.676117Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Enqueue inputs for accumulating epoch `0`; machine manager in epoch `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.676604Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m[1menqueue_remaning_inputs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager has processed all current inputs
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.676695Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting done
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.676768Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Awaiting new blocks...
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.719126Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Dispatcher received new block `Block {
+[35mrollups_dispatcher_1  |[0m     hash: 0x4c3dbc3cdff582b723c7e11b0a759ab167a753df19f7b35dcf64d6f3f3097d9b,
+[35mrollups_dispatcher_1  |[0m     number: 11,
+[35mrollups_dispatcher_1  |[0m     parent_hash: 0xadc464e571cf347b2d3eba12a578d9418ca18e28d3aaabe17997eeec6af4a2e2,
+[35mrollups_dispatcher_1  |[0m     timestamp: 1645014715,
+[35mrollups_dispatcher_1  |[0m     logs_bloom: 0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,
+[35mrollups_dispatcher_1  |[0m }`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.719422Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying state-fold server latest state
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.754200Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting on state `RollupsState {
+[35mrollups_dispatcher_1  |[0m     constants: ImmutableState {
+[35mrollups_dispatcher_1  |[0m         input_duration: 86400,
+[35mrollups_dispatcher_1  |[0m         challenge_period: 604800,
+[35mrollups_dispatcher_1  |[0m         contract_creation_timestamp: 1645014615,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         output_contract_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         validator_contract_address: 0x80e2e2367c5e9d070ae2d6d50bf0cdf6360a7151,
+[35mrollups_dispatcher_1  |[0m         dispute_contract_address: 0x0433d874a28147db0b330c000fcc50c0f0baf425,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m     finalized_epochs: FinalizedEpochs {
+[35mrollups_dispatcher_1  |[0m         finalized_epochs: [],
+[35mrollups_dispatcher_1  |[0m         initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_epoch: AccumulatingEpoch {
+[35mrollups_dispatcher_1  |[0m         epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m         inputs: EpochInputState {
+[35mrollups_dispatcher_1  |[0m             epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m             inputs: [],
+[35mrollups_dispatcher_1  |[0m             input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         },
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_phase: InputAccumulation,
+[35mrollups_dispatcher_1  |[0m     output_state: OutputState {
+[35mrollups_dispatcher_1  |[0m         output_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         vouchers: {},
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m }`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.754716Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying machine manager for current epoch status
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.756830Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Current epoch status: EpochStatus {
+[35mrollups_dispatcher_1  |[0m     epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m     processed_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     pending_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     is_active: true,
+[35mrollups_dispatcher_1  |[0m }
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.757007Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_of_finalized_epochs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager epoch number `0` ahead of finalized_epochs `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.757123Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m InputAccumulation phase; enqueueing inputs
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.757203Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Enqueue inputs for accumulating epoch `0`; machine manager in epoch `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.757285Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m[1menqueue_remaning_inputs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager has processed all current inputs
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.757396Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting done
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.757528Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Awaiting new blocks...
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.5:51596), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_sendTransaction
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.937890Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Dispatcher received new block `Block {
+[35mrollups_dispatcher_1  |[0m     hash: 0x234ed85b882618dd7d3ad06238c187458f9dd0421fb0346dce1cf114e3c6aaaf,
+[35mrollups_dispatcher_1  |[0m     number: 11,
+[35mrollups_dispatcher_1  |[0m     parent_hash: 0xadc464e571cf347b2d3eba12a578d9418ca18e28d3aaabe17997eeec6af4a2e2,
+[35mrollups_dispatcher_1  |[0m     timestamp: 1645014715,
+[35mrollups_dispatcher_1  |[0m     logs_bloom: 0x00000000000000000080000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000020000000000000000000800000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000020000000000000000000000000000000000000000000008000000000000000000000,
+[35mrollups_dispatcher_1  |[0m }`
+[33mhardhat_1             |[0m   Contract call:       <UnrecognizedContract>
+[33mhardhat_1             |[0m   Transaction:         0xf959e7552dfadf49db60520dfb236bdeb0e00f45582d6be22c3b821fc0a5a470
+[33mhardhat_1             |[0m   From:                0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:56.938216Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying state-fold server latest state
+[33mhardhat_1             |[0m   To:                  0x9bd03768a7dcc129555de410ff8e85528a4f88b5
+[33mhardhat_1             |[0m   Value:               0 ETH
+[33mhardhat_1             |[0m   Gas used:            90264 of 90264
+[33mhardhat_1             |[0m   Block #11:           0x234ed85b882618dd7d3ad06238c187458f9dd0421fb0346dce1cf114e3c6aaaf
+[33mhardhat_1             |[0m 
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByHash (2)
+[33mhardhat_1             |[0m eth_chainId
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getTransactionByHash
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_chainId
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getTransactionReceipt
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByHash (2)
+[33mhardhat_1             |[0m eth_getLogs
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33mhardhat_1             |[0m eth_getBlockByHash
+[33mhardhat_1             |[0m eth_getBlockByHash (2)
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.194641Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting on state `RollupsState {
+[35mrollups_dispatcher_1  |[0m     constants: ImmutableState {
+[35mrollups_dispatcher_1  |[0m         input_duration: 86400,
+[35mrollups_dispatcher_1  |[0m         challenge_period: 604800,
+[35mrollups_dispatcher_1  |[0m         contract_creation_timestamp: 1645014615,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         output_contract_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         validator_contract_address: 0x80e2e2367c5e9d070ae2d6d50bf0cdf6360a7151,
+[35mrollups_dispatcher_1  |[0m         dispute_contract_address: 0x0433d874a28147db0b330c000fcc50c0f0baf425,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m     finalized_epochs: FinalizedEpochs {
+[35mrollups_dispatcher_1  |[0m         finalized_epochs: [],
+[35mrollups_dispatcher_1  |[0m         initial_epoch: 0,
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_epoch: AccumulatingEpoch {
+[35mrollups_dispatcher_1  |[0m         epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m         inputs: EpochInputState {
+[35mrollups_dispatcher_1  |[0m             epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m             inputs: [
+[35mrollups_dispatcher_1  |[0m                 Input {
+[35mrollups_dispatcher_1  |[0m                     sender: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266,
+[35mrollups_dispatcher_1  |[0m                     block_number: 11,
+[35mrollups_dispatcher_1  |[0m                     timestamp: 1645014715,
+[35mrollups_dispatcher_1  |[0m                     payload: [
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::grpc::server_manager] received advance_state with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::controller] processing advance request
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::controller] setting state to advance
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::dapp_client] making request to http://host.docker.internal:5003/advance
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::controller] processing dapp advance response
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z ERROR host_server_manager::controller] failed to send advance request to dapp (HTTP request error (error sending request for url (http://host.docker.internal:5003/advance): error trying to connect: tcp connect error: Connection refused (os error 111)))
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z INFO  host_server_manager::controller] setting state to idle
+[36;1mserver_manager_1      |[0m [2022-02-16T12:31:57Z ERROR host_server_manager::grpc::server_manager] something went wrong; tainting session
+[35mrollups_dispatcher_1  |[0m                         99,
+[35mrollups_dispatcher_1  |[0m                         97,
+[35mrollups_dispatcher_1  |[0m                         114,
+[35mrollups_dispatcher_1  |[0m                         116,
+[35mrollups_dispatcher_1  |[0m                         101,
+[35mrollups_dispatcher_1  |[0m                         115,
+[35mrollups_dispatcher_1  |[0m                         105,
+[35mrollups_dispatcher_1  |[0m                         13,
+[35mrollups_dispatcher_1  |[0m                         10,
+[35mrollups_dispatcher_1  |[0m                     ],
+[35mrollups_dispatcher_1  |[0m                 },
+[35mrollups_dispatcher_1  |[0m             ],
+[35mrollups_dispatcher_1  |[0m             input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m         },
+[35mrollups_dispatcher_1  |[0m         rollups_contract_address: 0xa513e6e4b8f2a923d98304ec87f64353c4d5c853,
+[35mrollups_dispatcher_1  |[0m         input_contract_address: 0x9bd03768a7dcc129555de410ff8e85528a4f88b5,
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m     current_phase: InputAccumulation,
+[35mrollups_dispatcher_1  |[0m     output_state: OutputState {
+[35mrollups_dispatcher_1  |[0m         output_address: 0x440c0fcdc317d69606eabc35c0f676d1a8251ee1,
+[35mrollups_dispatcher_1  |[0m         vouchers: {},
+[35mrollups_dispatcher_1  |[0m     },
+[35mrollups_dispatcher_1  |[0m }`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.196114Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Querying machine manager for current epoch status
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.198211Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Current epoch status: EpochStatus {
+[35mrollups_dispatcher_1  |[0m     epoch_number: 0,
+[35mrollups_dispatcher_1  |[0m     processed_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     pending_input_count: 0,
+[35mrollups_dispatcher_1  |[0m     is_active: true,
+[35mrollups_dispatcher_1  |[0m }
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.198372Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_of_finalized_epochs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager epoch number `0` ahead of finalized_epochs `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.198457Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m InputAccumulation phase; enqueueing inputs
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.198535Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Enqueue inputs for accumulating epoch `0`; machine manager in epoch `0`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.198618Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m[1menqueue_remaning_inputs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Number of inputs in machine manager: 0
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.198708Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m[1mreact[0m[2m:[0m[1menqueue_inputs_for_accumulating_epoch[0m[2m:[0m[1menqueue_remaning_inputs[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Machine manager enqueueing inputs from `0` to `1`
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.200847Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Reacting done
+[35mrollups_dispatcher_1  |[0m [2m2022-02-16T12:31:57.201167Z[0m [32m INFO[0m [1mmain_loop[0m[2m:[0m [2moffchain::logic::rollups_logic[0m[2m:[0m Awaiting new blocks...
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:02Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:02Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:02Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:02Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:12Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:12Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:12Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:12Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_getBlockByNumber (2)
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:22Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:22Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:22Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:22Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (3)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:32Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:32Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:32Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:32Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (4)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:42Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:42Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:42Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:42Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_getBlockByNumber (5)
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:52Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:52Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:52Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:32:52Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (6)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:02Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:02Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:02Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:02Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (7)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:12Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:12Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:12Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:12Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (8)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:22Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:22Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:22Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:22Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (9)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:32Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:32Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:32Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:32Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (10)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:42Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:42Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:42Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:42Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (11)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:52Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:52Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:52Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:33:52Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber (12)
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+[33mhardhat_1             |[0m eth_subscribe
+[36;1mserver_manager_1      |[0m [2022-02-16T12:34:02Z INFO  host_server_manager::grpc::server_manager] received get_version
+[36;1mserver_manager_1      |[0m [2022-02-16T12:34:02Z INFO  host_server_manager::grpc::server_manager] received get_status
+[36;1mserver_manager_1      |[0m [2022-02-16T12:34:02Z INFO  host_server_manager::grpc::server_manager] received get_session_status with id=default_rollups_id
+[36;1mserver_manager_1      |[0m [2022-02-16T12:34:02Z INFO  host_server_manager::grpc::server_manager] received get_epoch_status with id=default_rollups_id and epoch_index=0
+[33mhardhat_1             |[0m eth_getBlockByNumber
+[33;1mstate_server_1        |[0m Got a request from Some(172.22.0.6:47024), initial state: ["0x0","0xa513e6e4b8f2a923d98304ec87f64353c4d5c853"]
+^CGracefully stopping... (press Ctrl+C again to force)
+Stopping echo_query_server_1       ... 
+Stopping echo_state_server_1       ... 
+Stopping echo_rollups_dispatcher_1 ... 
+Stopping echo_rollups_indexer_1    ... 
+Stopping echo_hardhat_1            ... 
+Stopping echo_database_1           ... 
+Stopping echo_server_manager_1     ... 
+[1A[2KStopping echo_server_manager_1     ... [32mdone[0m[1B[4A[2KStopping echo_rollups_indexer_1    ... [32mdone[0m[4B[5A[2KStopping echo_rollups_dispatcher_1 ... [32mdone[0m[5B[6A[2KStopping echo_state_server_1       ... [32mdone[0m[6B[7A[2KStopping echo_query_server_1       ... [32mdone[0m[7B[3A[2KStopping echo_hardhat_1            ... [32mdone[0m[3B[2A[2KStopping echo_database_1           ... [32mdone[0m[2B
+Script done on 2022-02-16 09:34:24-03:00 [COMMAND_EXIT_CODE="0"]
