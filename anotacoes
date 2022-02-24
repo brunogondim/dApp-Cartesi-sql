@@ -72,7 +72,7 @@ REST_FRAMEWORK = {
 "
 * no arquivo urls principal, deve-se incluir: path('api-auth/', include('rest_framework.urls')),
 
-*TO_DO
+*TO_DO ver tutorial
 
 
 

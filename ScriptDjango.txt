@@ -1,11 +1,4 @@
-Script started, file is ScriptDjango.txt
-Watching for file changes with StatReloader
-Performing system checks...
+Script started on 2022-02-23 21:53:39-03:00 [TERM="xterm-256color" TTY="/dev/pts/6" COLUMNS="102" LINES="15"]
+python3: can't open file 'manage.py': [Errno 2] No such file or directory
 
-System check identified no issues (0 silenced).
-February 16, 2022 - 12:48:00
-Django version 3.2, using settings 'testSQL.settings'
-Starting development server at http://0.0.0.0:5003/
-Quit the server with CONTROL-C.
-[16/Feb/2022 12:48:43] "POST /advance HTTP/1.1" 200 0
-Script done, file is ScriptDjango.txt
+Script done on 2022-02-23 21:53:40-03:00 [COMMAND_EXIT_CODE="2"]
