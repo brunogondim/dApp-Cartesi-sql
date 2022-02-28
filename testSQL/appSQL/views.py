@@ -27,13 +27,16 @@ from django.db import connection
 
 class Portal(APIView):
     parser_classes = [JSONParser]
-        
+    
+#     def options(self, request):
+#         pass
+
     def post(self, request):
         
         #aquire all incoming data
         metadata = request.data['metadata']
         payloadHex = {'payload':request.data['payload']}
-        payload = bytes.fromhex(payloadHex).decode('utf-8')
+        payload = bytes.fromhex(payloadHex['payload'][2:]).decode('utf-8')
         metadata.update(payloadHex)
         
 
@@ -44,64 +47,64 @@ class Portal(APIView):
         else:
                 return Response(logserializer.errors, status=status.HTTP_202_ACCEPTED)
         
-        # secure SQL Operations
-        """Pattern:
-                User Action: Insert ; Select ; Update ; Delete ; none ;
-                Table: Users ;
-                Columns: Columns of the selected Table ; none
-                Conditions: Column ;
-                Conditions_Operator: = ; none ;
-                Conditions_Paremeter: arg ; none ;
-                Admin_Action: Free SQL ; none ;
-                """
-        userAction = payload['User Action']
-        table = payload['Table']
-        columns = payload['Columns']
-        conditions = payload['Conditions']
-        conditions_Operator = payload['Conditions_Operator']
-        conditions_Paremeter = payload['Conditions_Paremeter']
-        admin_Action = payload['Admin_Action']
+        # # secure SQL Operations
+        # """Pattern:
+        #         User Action: Insert ; Select ; Update ; Delete ; none ;
+        #         Table: Users ;
+        #         Columns: Columns of the selected Table ; none
+        #         Conditions: Column ;
+        #         Conditions_Operator: = ; none ;
+        #         Conditions_Paremeter: arg ; none ;
+        #         Admin_Action: Free SQL ; none ;
+        #         """
+        # userAction = payload['User Action']
+        # table = payload['Table']
+        # columns = payload['Columns']
+        # conditions = payload['Conditions']
+        # conditions_Operator = payload['Conditions_Operator']
+        # conditions_Paremeter = payload['Conditions_Paremeter']
+        # admin_Action = payload['Admin_Action']
 
-        if userAction == 'Insert':
-                if table == 'User':
-                        userSelializer = Serializers.UserSerializer(columns)
-                        if userSelializer.is_valid():
-                                userSelializer.save()      
-                        else: return Response(userSelializer.errors, status=status.HTTP_202_ACCEPTED)
-                else: Response('table not found', status=status.HTTP_202_ACCEPTED)
+        # if userAction == 'Insert':
+        #         if table == 'User':
+        #                 userSelializer = Serializers.UserSerializer(columns)
+        #                 if userSelializer.is_valid():
+        #                         userSelializer.save()      
+        #                 else: return Response(userSelializer.errors, status=status.HTTP_202_ACCEPTED)
+        #         else: Response('table not found', status=status.HTTP_202_ACCEPTED)
 
-        elif userAction == 'Select':
-                #TODO
-                pass
-        elif userAction == 'Update':
-                #TODO
-                pass
-        elif userAction == 'Delete':
-                #TODO
-                pass
+        # elif userAction == 'Select':
+        #         #TODO
+        #         pass
+        # elif userAction == 'Update':
+        #         #TODO
+        #         pass
+        # elif userAction == 'Delete':
+        #         #TODO
+        #         pass
         
-        # risky SQL Operations: free sql commands has risk of SQL attacks!
-        elif admin_Action != 'none':
+        # # risky SQL Operations: free sql commands has risk of SQL attacks!
+        # elif admin_Action != 'none':
 
-                #gerneral
-                try:
-                        connection.cursor().execute(admin_Action)
-                except Exception as e:
-                        return Response('something went wrong: ' + e, status=status.HTTP_202_ACCEPTED)
+        #         #gerneral
+        #         try:
+        #                 connection.cursor().execute(admin_Action)
+        #         except Exception as e:
+        #                 return Response('something went wrong: ' + e, status=status.HTTP_202_ACCEPTED)
 
-                try:
-                        raw = connection.cursor().fetchall()
-                        return Response(raw, status=status.HTTP_202_ACCEPTED)
-                except Exception as e:
-                        return Response('something went wrong? ' + e, status=status.HTTP_202_ACCEPTED)
+        #         try:
+        #                 raw = connection.cursor().fetchall()
+        #                 return Response(raw, status=status.HTTP_202_ACCEPTED)
+        #         except Exception as e:
+        #                 return Response('something went wrong? ' + e, status=status.HTTP_202_ACCEPTED)
                                
-                # # or specific select statemants select?
-                # if table == "Log":
-                #         models.Log.objects.raw(admin_Action)
-                # if table == "User":
-                #         models.User.objects.raw(admin_Action)
+        #         # # or specific select statemants select?
+        #         # if table == "Log":
+        #         #         models.Log.objects.raw(admin_Action)
+        #         # if table == "User":
+        #         #         models.User.objects.raw(admin_Action)
 
 
-        else: return Response('nothing done', status=status.HTTP_202_ACCEPTED)
+        # else: return Response('nothing done', status=status.HTTP_202_ACCEPTED)
 
         return Response('all done correctly', status=status.HTTP_202_ACCEPTED)

@@ -2,3 +2,4 @@ django == 3.2
 djangorestframework == 3.13
 markdown == 3.3      # Markdown support for the browsable API.
 django-filter == 21.1   # Filtering support
+django-cors-headers == 3.11.0 # anable API communications 
