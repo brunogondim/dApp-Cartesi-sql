@@ -1,3 +1,4 @@
+from asyncio.log import logger
 from . import models
 from . import Serializers
 
@@ -11,34 +12,27 @@ from rest_framework import status
 
 from django.db import connection
 
-# class Teste(View):
-#     def get(self, request):
-#         # <view logic>
-#         body = HttpRequest.body
-#         return HttpResponse('result')
-#     def post(self,request):
-#         body = HttpRequest.body 
-        
-        
-        
-        # retorno = ''
-
-        # return HttpResponse(retorno)
+import logging
+import requests
 
 class Portal(APIView):
     parser_classes = [JSONParser]
+    logger = logging.getLogger()
+    logger.addHandler('console')
+    
     
 #     def options(self, request):
 #         pass
 
     def post(self, request):
-        
+
+        dispatcher_url = 'http://127.0.0.1:5004'
+
         #aquire all incoming data
         metadata = request.data['metadata']
         payloadHex = {'payload':request.data['payload']}
         payload = bytes.fromhex(payloadHex['payload'][2:]).decode('utf-8')
-        metadata.update(payloadHex)
-        
+        metadata.update(payloadHex)    
 
         # save all data as log to the DB
         logserializer = Serializers.LogSerializer(data=metadata)
@@ -46,7 +40,31 @@ class Portal(APIView):
                 logserializer.save()      
         else:
                 return Response(logserializer.errors, status=status.HTTP_202_ACCEPTED)
+        logger.info('metadata and payload saved as log')
         
+        logger.info('adding notice')
+        response = requests.post(dispatcher_url + "/notice", json={"payload": request.data['payload']})
+        logger.info('Received notice status %s body %s', response.status_code, response.content)
+
+        logger.info("Finishing")
+        response = requests.post(dispatcher_url + "/finish", json={"status": "accept"})
+        logger.info('Received finish status %s', response.status_code)
+
+        return Response(status=status.HTTP_202_ACCEPTED)        
+
+        # @app.route("/advance", methods=["POST"])
+        # def advance():
+        #         body = request.get_json()
+        #         app.logger.info(f"Received advance request body {body}")
+        #         app.logger.info("Adding notice")
+        #         response = requests.post(dispatcher_url + "/notice", json={"payload": body["payload"]})
+        #         app.logger.info(f"Received notice status {response.status_code} body {response.content}")
+        #         app.logger.info("Finishing")
+        #         response = requests.post(dispatcher_url + "/finish", json={"status": "accept"})
+        #         app.logger.info(f"Received finish status {response.status_code}")
+        #         return "", 202
+        
+
         # # secure SQL Operations
         # """Pattern:
         #         User Action: Insert ; Select ; Update ; Delete ; none ;
@@ -107,4 +125,4 @@ class Portal(APIView):
 
         # else: return Response('nothing done', status=status.HTTP_202_ACCEPTED)
 
-        return Response('all done correctly', status=status.HTTP_202_ACCEPTED)
+        # return Response('all done correctly', status=status.HTTP_202_ACCEPTED)

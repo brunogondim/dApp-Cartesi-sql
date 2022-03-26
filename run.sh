@@ -18,12 +18,16 @@ DAPP_PORT=5003
 HTTP_DISPATCHER_PORT=5004
 
 # Change dir to echo-dapp root
-cd /mnt/echo-dapp
+#cd /mnt/echo-dapp
+cd /mnt/echo-dapp/testSQL3010
 
-# Start echo dapp
+## Start echo dapp
+#echo -n "Starting echo-dapp: "
+#HTTP_DISPATCHER_URL="http://127.0.0.1:$HTTP_DISPATCHER_PORT" \
+#gunicorn --preload --workers 1 --bind 127.0.0.1:$DAPP_PORT echo:app &
 echo -n "Starting echo-dapp: "
 HTTP_DISPATCHER_URL="http://127.0.0.1:$HTTP_DISPATCHER_PORT" \
-gunicorn --preload --workers 1 --bind 127.0.0.1:$DAPP_PORT echo:app &
+python3 manage.py runserver 127.0.0.1:$DAPP_PORT
 
 # Wait for the echo dapp to start up
 RETRY=0

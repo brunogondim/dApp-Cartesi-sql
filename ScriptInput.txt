@@ -1,4 +1,0 @@
-Script started on 2022-02-16 09:31:29-03:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="102" LINES="32"]
-Added input '0x636172746573690D0A' to epoch '0' (timestamp: 1645014715, signer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266, tx: 0xf959e7552dfadf49db60520dfb236bdeb0e00f45582d6be22c3b821fc0a5a470)
-
-Script done on 2022-02-16 09:31:57-03:00 [COMMAND_EXIT_CODE="0"]

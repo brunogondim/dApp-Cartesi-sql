@@ -19,7 +19,7 @@ $ cd testSQL
 $ python3 manage.py runserver
 *ctrl + C (para parar o servidor. o comando anterior foi para iniciar o servidor e testar a instalação e projeto)
 *para rodar na porta que se espera receber as requisições(http://0.0.0.0:5003), usar o comando $ python3 manage.py runserver 0:5003
-$ python manage.py startapp appSQL
+$ python3 manage.py startapp appSQL
 *na pasta testSQL, altera-se o arquivo "settings" para acrescentar 'appSQL.apps.AppsqlConfig' no INSTALLED_APPS
 *na pasta testSQL, altera-se o arquivo "settings" para acrescentar '0.0.0.0' no ALLOWED_HOSTS
 *na pasta testSQL, altera-se o arquivo "urls" para acrescentar "from django.urls import include" e path('appSQL/', include('appSQL.urls')) na "urlpatterns"
@@ -71,6 +71,23 @@ REST_FRAMEWORK = {
 }
 "
 * no arquivo urls principal, deve-se incluir: path('api-auth/', include('rest_framework.urls')),
+
+################################################################################################
+################################################################################################
+################################################################################################
+*reinicia-se tudo, usando django 3.0.10, pois é a versao disponivel na cartesi-machine
+
+...comandos mais usados
+pip install django==3.0.10
+django-admin startproject testSQL3010
+python3 manage.py runserver
+e2ls
+genext2fs -b 16384 -d testSQL3010 dapp-testSQL.ext2
+
+
+
+
+
 
 *TO_DO ver tutorial
 
