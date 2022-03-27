@@ -12,7 +12,7 @@
 # specific language governing permissions and limitations under the License.
 
 cartesi-machine \
-    --ram-length=128Mi \
+    --ram-length=256Mi \
     --rollup \
     --flash-drive=label:echo-dapp,filename:dapp-testSQL.ext2 \
     --flash-drive=label:root,filename:rootfs-django.ext2 \

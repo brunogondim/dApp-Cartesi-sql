@@ -14,7 +14,7 @@
 MACHINE_DIR=/opt/cartesi/echo-machine
 
 cartesi-machine \
-    --ram-length=128Mi \
+    --ram-length=256Mi \
     --rollup \
     --flash-drive=label:echo-dapp,filename:dapp-testSQL.ext2 \
     --flash-drive=label:root,filename:rootfs-django.ext2 \
