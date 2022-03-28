@@ -79,7 +79,7 @@ REST_FRAMEWORK = {
 
 ...comandos mais usados
 pip install django==3.0.10
-pip install requests
+pip install requests==2.23.0
 django-admin startproject testSQL3010
 python3 manage.py runserver
 e2ls

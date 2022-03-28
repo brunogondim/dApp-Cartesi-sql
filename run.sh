@@ -26,7 +26,7 @@ cd /mnt/echo-dapp
 #gunicorn --preload --workers 1 --bind 127.0.0.1:$DAPP_PORT echo:app &
 echo -n "Starting echo-dapp: "
 HTTP_DISPATCHER_URL="http://127.0.0.1:$HTTP_DISPATCHER_PORT" \
-python3 testSQL3010/manage.py runserver 127.0.0.1:$DAPP_PORT
+python3 testSQL3010/manage.py runserver 127.0.0.1:$DAPP_PORT &
 
 # Wait for the echo dapp to start up
 RETRY=0

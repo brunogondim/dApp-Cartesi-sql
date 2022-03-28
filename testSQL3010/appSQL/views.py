@@ -1,16 +1,17 @@
-from django.shortcuts import render
+from django.core.serializers import serialize
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views import View
 from . import models
 
 import logging
 import requests
 import json
+import binascii
 
 # Create your views here.
 
-class Portal(View):
+class Advance(View):
     # parser_classes = [JSONParser]
     logger = logging.getLogger(__name__)
     # logger.addHandler('console')
@@ -44,11 +45,32 @@ class Portal(View):
         self.logger.warning('metadata and payload saved as log')
         
         self.logger.warning('adding notice')
-        response = requests.post(dispatcher_url + "/notice", json={"payload": json.loads(request.body)['payload']})
+        noticePayload = serialize("json",models.Log.objects.all())
+        noticePayloadBytes = noticePayload.encode('utf-8')
+        noticePayloadHex = "0x{0}".format(binascii.hexlify(noticePayloadBytes).decode('utf-8'))
+        response = requests.post(dispatcher_url + "/notice", json={"payload": noticePayloadHex})
         self.logger.warning('Received notice status %s body %s', response.status_code, response.content)
 
         self.logger.warning("Finishing")
         response = requests.post(dispatcher_url + "/finish", json={"status": "accept"})
         self.logger.warning('Received finish status %s', response.status_code)
 
-        return HttpResponse(status=202) 
+        return HttpResponse(status=202)
+
+
+# https://www.online-toolz.com/tools/hex-to-text-converter.php
+class Inspect(View):
+    
+    logger = logging.getLogger(__name__)
+    
+    def get(self, request, whatHex):
+
+        #what = bytes.fromhex(whatHex['payload'][2:]).decode('utf-8')
+        what = whatHex
+        self.logger.warning(f"Received inspect request payload Hex {whatHex}")
+        self.logger.warning(f"Received inspect request payload {what}")
+
+        payload = serialize("json",models.Log.objects.all())
+
+        return  JsonResponse(data={"reports": [{"payload": payload}]},status=202)
+
