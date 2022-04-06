@@ -27,7 +27,7 @@ class Advance(View):
 
         #aquire all incoming data
         metadata = json.loads(request.body)['metadata']
-
+        
         payloadHex = {'payload':json.loads(request.body)['payload']}
         payload = bytes.fromhex(payloadHex['payload'][2:]).decode('utf-8')
         metadata.update(payloadHex)    
@@ -67,7 +67,7 @@ class Inspect(View):
 
         #what = bytes.fromhex(whatHex['payload'][2:]).decode('utf-8')
         what = whatHex
-        self.logger.warning(f"Received inspect request payload Hex {whatHex}")
+        self.logger.warning(f"Received inspect request payload  Hex {whatHex}")
         self.logger.warning(f"Received inspect request payload {what}")
 
         payload = serialize("json",models.Log.objects.all())

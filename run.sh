@@ -44,5 +44,5 @@ done
 echo ""
 
 # Start http dispatcher
-echo "Starting http-dispatcher: "
-http-dispatcher --address 127.0.0.1:$HTTP_DISPATCHER_PORT --dapp 127.0.0.1:$DAPP_PORT --verbose
+# echo "Starting http-dispatcher: "
+# http-dispatcher --address 127.0.0.1:$HTTP_DISPATCHER_PORT --dapp 127.0.0.1:$DAPP_PORT --verbose
